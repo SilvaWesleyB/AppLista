@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Work List</string>
+    <string name="salvar">Salvar</string>
+    <string name="nome_lista">Modelo Lista</string>
+    <string name="info_lista">Nome da Lista</string>
+    <string name="action_settings">Configurações</string>
+    <string name="editar">Editar</string>
+    <string name="deletar">Deletar</string>
+    <string name="txt_title">Titulo</string>
+    <string name="txt_desc">Este é apenas um texto modelo</string>
+    <string name="desc_lista">Descrição da Lista</string>
+    <string name="minhas_listas">Minhas Listas</string>
+    <string name="title_activity_edita_lista">EditaLista</string>
+    <string name="large_text">Apenas um modelo de texto</string>
+    <string name="titulo_da_tarefa">Titulo da Tarefa</string>
+    <string name="loading">Carregando…</string>
+    <string name="titulo_login">Faça Login ou Registre-se</string>
+    <string name="login_desc">Logo Work List</string>
+    <string name="e_mail">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="login">Login</string>
+    <string name="registrar">Registrar-se</string>
+    <string name="cadastro_desc">Para realizar o cadastro, preencha as lacunas abaixo com seu Email e sua senha e click em Registrar-se!</string>
+
+</resources>

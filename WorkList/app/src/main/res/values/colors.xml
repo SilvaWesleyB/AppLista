@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    /*Cor Roxa: #340F59 */
+    <color name="colorPrimary">#340F59</color>
+    <color name="colorPrimaryDark">#340F59</color>
+    <color name="colorAccent">#340F59</color>
+    <color name="colorWhite">#FFFFFF</color>
+</resources>

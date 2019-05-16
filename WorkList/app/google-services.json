@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "57466536013",
+    "firebase_url": "https://lista-de-tarfas.firebaseio.com",
+    "project_id": "lista-de-tarfas",
+    "storage_bucket": "lista-de-tarfas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57466536013:android:31a053b13c1eff5e",
+        "android_client_info": {
+          "package_name": "com.main.worklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57466536013-hi2a0oenskc1qr4tiv91ic2ba3a777h1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.main.worklist",
+            "certificate_hash": "8b15fbe9ed900c3ddd86aea9a2af3bac04d69006"
+          }
+        },
+        {
+          "client_id": "57466536013-e6glqd3mpvnmtvjc109qrtd3vh77til8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBav-wXnN_yJ2nDRRK3qVroNmYEwLaHhBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57466536013-e6glqd3mpvnmtvjc109qrtd3vh77til8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
