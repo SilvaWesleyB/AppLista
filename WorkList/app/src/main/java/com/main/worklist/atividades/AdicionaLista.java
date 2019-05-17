@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.main.worklist.R;
-import com.main.worklist.bdhelper.TarefaDAO;
+import com.main.worklist.bdhelper.ListaDAO;
 import com.main.worklist.model.Tarefa;
 
 public class AdicionaLista extends Carregando {
@@ -33,9 +33,9 @@ public class AdicionaLista extends Carregando {
         if (item.getItemId() == R.id.itemSalvar) {
 
             Tarefa lista = new Tarefa(0L, nome_Tarefa.getText().toString(),desc_Tarefa.getText().toString());
-            TarefaDAO tarefaDAO = TarefaDAO.getSingleton(getApplicationContext());
+            ListaDAO listaDAO = ListaDAO.getSingleton(getApplicationContext());
 
-            tarefaDAO.salvar(lista);
+            listaDAO.salvar(lista);
 
             Toast.makeText(this, "Lista Criada com Sucesso!", Toast.LENGTH_SHORT).show();
 

@@ -36,13 +36,6 @@ public class LoginActivity extends Carregando implements
         mAuth = FirebaseAuth.getInstance();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateInfo(currentUser);
-    }
-
     public void bind(){
         mEmail = findViewById(R.id.login_email);
         mSenha = findViewById(R.id.login_senha);
@@ -66,10 +59,15 @@ public class LoginActivity extends Carregando implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Log.d(TAG, "LoginComEmail: Sucesso");
+
                             FirebaseUser user = mAuth.getCurrentUser();
+                            updateInfo(user);
+
                             Intent intent = new Intent(LoginActivity.this, MostraLista.class);
                             intent.putExtra("Usuário", user.getUid());
+
                             Toast.makeText(LoginActivity.this, "Login Realizado com Sucesso!", Toast.LENGTH_SHORT).show();
+
                             startActivity(intent);
                         } else {
                             Log.v(TAG, "LoginComEmail: Falhou", task.getException());
@@ -108,7 +106,7 @@ public class LoginActivity extends Carregando implements
             if (!validacaoForm()) {
                 return;
             }
-            Toast.makeText(LoginActivity.this, "Falha na Autenticação.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Usuário não Cadastrado ou Senha Incorreta!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -123,9 +121,7 @@ public class LoginActivity extends Carregando implements
         else if
         (i == R.id.login_btn_registrar) {
             Intent intent = new Intent(this, CadastroActivity.class);
-            intent.putExtra("Usuário", mEmail.getText().toString());
             startActivity(intent);
         }
-
     }
 }

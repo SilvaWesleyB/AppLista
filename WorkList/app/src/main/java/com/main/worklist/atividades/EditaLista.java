@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.main.worklist.R;
-import com.main.worklist.bdhelper.TarefaDAO;
+import com.main.worklist.bdhelper.ListaDAO;
 import com.main.worklist.model.Tarefa;
 
 public class EditaLista extends Carregando {
@@ -39,7 +39,7 @@ public class EditaLista extends Carregando {
             @Override
             public void onClick(View view) {
             Tarefa tarefaAtual = new Tarefa(0L, newDescLista.getText().toString(), newTitleLista.getText().toString());
-            TarefaDAO repositorio = TarefaDAO.getSingleton(getApplicationContext());
+            ListaDAO repositorio = ListaDAO.getSingleton(getApplicationContext());
 
             tarefaAtual.setId(tarefa.getId());
             repositorio.atualizar(tarefaAtual);

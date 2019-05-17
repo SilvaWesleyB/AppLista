@@ -21,5 +21,6 @@
     <string name="login">Login</string>
     <string name="registrar">Registrar-se</string>
     <string name="cadastro_desc">Para realizar o cadastro, preencha as lacunas abaixo com seu Email e sua senha e click em Registrar-se!</string>
+    <string name="sair">Sair</string>
 
 </resources>

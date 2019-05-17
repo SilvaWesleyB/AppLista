@@ -6,23 +6,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.main.worklist.R;
-import com.main.worklist.adapter.TarefaAdapter;
-import com.main.worklist.bdhelper.TarefaDAO;
+import com.main.worklist.adapter.AdapterLista;
+import com.main.worklist.bdhelper.ListaDAO;
 import com.main.worklist.model.Tarefa;
 
 
 
 public class MostraLista extends Carregando implements AdapterView.OnItemClickListener,
-        TarefaAdapter.onContactItemListner {
+        AdapterLista.onContactItemListner {
 
     private ListView lista;
-    private TarefaAdapter mAdapter;
+    private AdapterLista mAdapter;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,8 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
 
         lista = findViewById(R.id.minhasListas);
         lista.setOnItemClickListener(this);
@@ -51,9 +58,16 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
         carregarListaTarefas();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_sair, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
     public void carregarListaTarefas(){
-        TarefaDAO tarefaDAO = TarefaDAO.getSingleton(this);
-        mAdapter = new TarefaAdapter(this, 0,tarefaDAO.listar(), this);
+        ListaDAO listaDAO = ListaDAO.getSingleton(this);
+        mAdapter = new AdapterLista(this, 0, listaDAO.listar(), this);
         lista.setAdapter(mAdapter);
     }
 
@@ -69,8 +83,8 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        TarefaDAO tarefaDAO =  TarefaDAO.getSingleton(getApplicationContext());
-                        tarefaDAO.deletar(tarefaToRemove);
+                        ListaDAO listaDAO =  ListaDAO.getSingleton(getApplicationContext());
+                        listaDAO.deletar(tarefaToRemove);
                         mAdapter.remove(tarefaToRemove);
                         mAdapter.notifyDataSetChanged();
 
@@ -85,4 +99,31 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
         intent.putExtra("Lista", mAdapter.getItem(position));
         startActivity(intent);
     }
+
+    private void signOut() {
+        mAuth.signOut();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.btn_sair) {
+            new AlertDialog.Builder(this)
+                .setTitle("Atenção!")
+                .setMessage("Deseja Realmente Sair?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        signOut();
+
+                        Toast.makeText(MostraLista.this, "Você Saiu! Att Breve", Toast.LENGTH_SHORT).show();
+
+                        finish();
+                    }
+                }).setNegativeButton("Não", null).show();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

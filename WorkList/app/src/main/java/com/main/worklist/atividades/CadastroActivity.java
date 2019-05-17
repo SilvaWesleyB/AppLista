@@ -1,8 +1,6 @@
 package com.main.worklist.atividades;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,8 +18,6 @@ import com.main.worklist.R;
 public class CadastroActivity extends Carregando implements
         View.OnClickListener{
 
-    private FirebaseUser usuario;
-
     private FirebaseAuth mAuth;
 
     private static final String TAG = "EmailPassword";
@@ -35,13 +31,7 @@ public class CadastroActivity extends Carregando implements
         setContentView(R.layout.activity_cadastro);
 
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();
         bind();
-        if(intent.hasExtra("Usuário")){
-            usuario = (FirebaseUser) intent.getExtras().getSerializable("Usuário");
-            usuario = mAuth.getCurrentUser();
-            setTela(usuario);
-        }
     }
 
     private void Cadastrar(String email, String senha) {
@@ -58,27 +48,37 @@ public class CadastroActivity extends Carregando implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Log.d(TAG, "CriarUsuário: Sucesso");
-                            FirebaseUser usuario = mAuth.getCurrentUser();
-                            updateInfo(usuario);
+
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            updateInfo(currentUser);
+
+                            Toast.makeText(CadastroActivity.this, "Usuário cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
+
                             finish();
+
                         }else {
-                            Toast.makeText(CadastroActivity.this, "Erro ao se Cadastrar, Email ja Cadastrado!", Toast.LENGTH_SHORT).show();
+
+                            Log.v(TAG, "CadastroComEmail: Falhou", task.getException());
                             updateInfo(null);
+
                         }
+
                         hideProgressDialog();
                     }
                 });
     }
 
-    private void updateInfo(FirebaseUser usuario) {
-        if (usuario == null){
+    private void updateInfo(FirebaseUser currentUser) {
+        hideProgressDialog();
+        if (currentUser == null){
+
             if (!validacaoForm()) {
                 return;
             }
-            Toast.makeText(this, "Algum campo Ficou vazio, preencha todos os campos!", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "Algum campo vazio ou Email ja Cadastrado!", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private boolean validacaoForm() {
         boolean valid = true;
@@ -99,11 +99,6 @@ public class CadastroActivity extends Carregando implements
         }
 
         return valid;
-    }
-
-
-    private void setTela(FirebaseUser usuario) {
-        mEmail.setText(usuario.getEmail());
     }
 
     public void bind() {
