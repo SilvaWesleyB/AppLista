@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.main.worklist.R;
-import com.main.worklist.bdhelper.ListaDAO;
+import com.main.worklist.bdhelper.DAO;
 import com.main.worklist.model.Tarefa;
 
-public class EditaLista extends Carregando {
+public class EditaTarefa extends Carregando {
 
     private Tarefa tarefa;
     private TextView newDescLista;
@@ -28,8 +28,8 @@ public class EditaLista extends Carregando {
 
         Intent intent = getIntent();
         bind();
-        if(intent.hasExtra("Lista")){
-            tarefa = (Tarefa) intent.getExtras().getSerializable("Lista");;
+        if(intent.hasExtra("Tarefa")){
+            tarefa = (Tarefa) intent.getExtras().getSerializable("Tarefa");;
             setTela(tarefa);
         }
 
@@ -39,11 +39,11 @@ public class EditaLista extends Carregando {
             @Override
             public void onClick(View view) {
             Tarefa tarefaAtual = new Tarefa(0L, newDescLista.getText().toString(), newTitleLista.getText().toString());
-            ListaDAO repositorio = ListaDAO.getSingleton(getApplicationContext());
+            DAO repositorio = DAO.getSingleton(getApplicationContext());
 
             tarefaAtual.setId(tarefa.getId());
             repositorio.atualizar(tarefaAtual);
-                Toast.makeText(EditaLista.this, "Lista Atualizada com suucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditaTarefa.this, "Tarefa Atualizada com suucesso!", Toast.LENGTH_SHORT).show();
             finish();
         }
         });

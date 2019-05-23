@@ -4,7 +4,7 @@ import com.main.worklist.model.Tarefa;
 
 import java.util.ArrayList;
 
-interface InterfaceListaDao {
+interface InterfaceDao {
     public void salvar(Tarefa tarefa);
     public void atualizar(Tarefa tarefa);
     public void deletar(Tarefa tarefa);

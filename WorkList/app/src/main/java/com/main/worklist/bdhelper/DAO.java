@@ -9,18 +9,18 @@ import com.main.worklist.model.Tarefa;
 
 import java.util.ArrayList;
 
-import static com.main.worklist.bdhelper.BdHelperLista.TABELA_TAREFAS;
+import static com.main.worklist.bdhelper.BdHelper.TABELA_TAREFAS;
 
-public class ListaDAO implements InterfaceListaDao {
+public class DAO implements InterfaceDao {
 
-    static private ListaDAO singleton;
+    static private DAO singleton;
 
     private SQLiteDatabase BDListas;
 
-    public static ListaDAO getSingleton(Context context){
+    public static DAO getSingleton(Context context){
         if (singleton == null){
-            singleton = new ListaDAO();
-            singleton.BDListas = new BdHelperLista(context , "", null, 0).getWritableDatabase();
+            singleton = new DAO();
+            singleton.BDListas = new BdHelper(context , "", null, 0).getWritableDatabase();
         }
         return singleton;
     }

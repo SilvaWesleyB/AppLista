@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Work List</string>
     <string name="salvar">Salvar</string>
-    <string name="nome_lista">Modelo Lista</string>
-    <string name="info_lista">Nome da Lista</string>
+    <string name="nome_lista">Modelo Tarefa</string>
+    <string name="info_lista">Nome da Tarefa</string>
     <string name="action_settings">Configurações</string>
     <string name="editar">Editar</string>
     <string name="deletar">Deletar</string>
     <string name="txt_title">Titulo</string>
     <string name="txt_desc">Este é apenas um texto modelo</string>
-    <string name="desc_lista">Descrição da Lista</string>
-    <string name="minhas_listas">Minhas Listas</string>
+    <string name="desc_lista">Descrição da Tarefa</string>
+    <string name="minhas_listas">Minhas Tarefas</string>
     <string name="title_activity_edita_lista">EditaLista</string>
     <string name="large_text">Apenas um modelo de texto</string>
     <string name="titulo_da_tarefa">Titulo da Tarefa</string>

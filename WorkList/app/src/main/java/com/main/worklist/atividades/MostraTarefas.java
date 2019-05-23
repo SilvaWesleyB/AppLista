@@ -16,12 +16,12 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.main.worklist.R;
 import com.main.worklist.adapter.AdapterLista;
-import com.main.worklist.bdhelper.ListaDAO;
+import com.main.worklist.bdhelper.DAO;
 import com.main.worklist.model.Tarefa;
 
 
 
-public class MostraLista extends Carregando implements AdapterView.OnItemClickListener,
+public class MostraTarefas extends Carregando implements AdapterView.OnItemClickListener,
         AdapterLista.onContactItemListner {
 
     private ListView lista;
@@ -45,7 +45,7 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdicionaLista.class);
+                Intent intent = new Intent(getApplicationContext(), AdicionaTarefa.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
 
 
     public void carregarListaTarefas(){
-        ListaDAO listaDAO = ListaDAO.getSingleton(this);
+        DAO listaDAO = DAO.getSingleton(this);
         mAdapter = new AdapterLista(this, 0, listaDAO.listar(), this);
         lista.setAdapter(mAdapter);
     }
@@ -79,24 +79,24 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
     public void onTrashClick(final Tarefa tarefaToRemove) {
         new AlertDialog.Builder(this)
                 .setTitle("Atenção!")
-                .setMessage("Deseja Realmente Apagar esta Lista?")
+                .setMessage("Deseja Realmente Apagar esta Tarefa?")
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ListaDAO listaDAO =  ListaDAO.getSingleton(getApplicationContext());
+                        DAO listaDAO =  DAO.getSingleton(getApplicationContext());
                         listaDAO.deletar(tarefaToRemove);
                         mAdapter.remove(tarefaToRemove);
                         mAdapter.notifyDataSetChanged();
 
-                        Toast.makeText(MostraLista.this, "Lista Excluida com Sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MostraTarefas.this, "Tarefa Excluida com Sucesso!", Toast.LENGTH_SHORT).show();
                     }
         }).setNegativeButton("Não", null).show();
     }
 
     @Override
     public void editaLista(Tarefa tarefa, int position) {
-        Intent intent = new Intent(this, EditaLista.class);
-        intent.putExtra("Lista", mAdapter.getItem(position));
+        Intent intent = new Intent(this, EditaTarefa.class);
+        intent.putExtra("Tarefa", mAdapter.getItem(position));
         startActivity(intent);
     }
 
@@ -116,7 +116,7 @@ public class MostraLista extends Carregando implements AdapterView.OnItemClickLi
                     public void onClick(DialogInterface dialog, int which) {
                         signOut();
 
-                        Toast.makeText(MostraLista.this, "Você Saiu! Att Breve", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MostraTarefas.this, "Você Saiu! Att Breve", Toast.LENGTH_SHORT).show();
 
                         finish();
                     }

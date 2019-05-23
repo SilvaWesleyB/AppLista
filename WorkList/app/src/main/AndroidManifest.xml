@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".atividades.LoginActivity">
+        <activity
+            android:name=".atividades.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,13 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".atividades.MostraLista"
+            android:name=".atividades.MostraTarefas"
             android:label="@string/minhas_listas"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".atividades.EditaLista"
+            android:name=".atividades.EditaTarefa"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".atividades.AdicionaLista" />
+        <activity android:name=".atividades.AdicionaTarefa" />
         <activity android:name=".atividades.CadastroActivity"/>
         <activity android:name=".atividades.Carregando" />
     </application>

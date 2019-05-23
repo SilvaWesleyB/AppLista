@@ -63,7 +63,7 @@ public class LoginActivity extends Carregando implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateInfo(user);
 
-                            Intent intent = new Intent(LoginActivity.this, MostraLista.class);
+                            Intent intent = new Intent(LoginActivity.this, MostraTarefas.class);
                             intent.putExtra("Usuário", user.getUid());
 
                             Toast.makeText(LoginActivity.this, "Login Realizado com Sucesso!", Toast.LENGTH_SHORT).show();

@@ -7,10 +7,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.main.worklist.R;
-import com.main.worklist.bdhelper.ListaDAO;
+import com.main.worklist.bdhelper.DAO;
 import com.main.worklist.model.Tarefa;
 
-public class AdicionaLista extends Carregando {
+public class AdicionaTarefa extends Carregando {
     private TextInputEditText nome_Tarefa;
     private TextInputEditText desc_Tarefa;
 
@@ -33,11 +33,11 @@ public class AdicionaLista extends Carregando {
         if (item.getItemId() == R.id.itemSalvar) {
 
             Tarefa lista = new Tarefa(0L, nome_Tarefa.getText().toString(),desc_Tarefa.getText().toString());
-            ListaDAO listaDAO = ListaDAO.getSingleton(getApplicationContext());
+            DAO listaDAO = DAO.getSingleton(getApplicationContext());
 
             listaDAO.salvar(lista);
 
-            Toast.makeText(this, "Lista Criada com Sucesso!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tarefa Criada com Sucesso!", Toast.LENGTH_SHORT).show();
 
             finish();
         }
